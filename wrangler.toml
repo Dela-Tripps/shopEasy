@@ -1,0 +1,9 @@
+name = "shopeasy"
+main = ".open-next/worker.js"
+compatibility_date = "2024-12-18"
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "shopeasy-db"
+database_id = "676a3478-7966-4ea2-86b2-bf772a484fc6"

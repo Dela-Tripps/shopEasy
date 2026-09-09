@@ -6,21 +6,48 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "next lint",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy"
   },
   "dependencies": {
+    "@auth/core": "^0.34.2",
+    "@auth/d1-adapter": "^1.4.0",
+    "@radix-ui/react-dialog": "^1.1.23",
+    "@radix-ui/react-dropdown-menu": "^2.1.24",
+    "@radix-ui/react-label": "^2.1.15",
+    "@radix-ui/react-slot": "^1.3.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "drizzle-orm": "^0.38.4",
+    "lucide-react": "^1.41.0",
     "next": "16.3.4",
-    "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "next-auth": "^5.0.0-beta.32",
+    "next-themes": "^0.4.6",
+    "paystack": "^1.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sonner": "^2.0.8",
+    "tailwind-merge": "^3.6.0",
+    "tw-animate-css": "^1.4.0",
+    "uuid": "^14.0.2"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.3.4",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "@cloudflare/workers-types": "^5.20260904.1",
+    "@opennextjs/cloudflare": "^1.20.6",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^22.13.9",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.0.4",
+    "@types/uuid": "^10.0.0",
+    "autoprefixer": "^10.5.5",
+    "drizzle-kit": "^0.30.4",
+    "postcss": "^8.5.28",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.8.2",
+    "wrangler": "^4.129.0"
+  },
+  "overrides": {
+    "@cloudflare/workers-types": "^5.20260904.1"
   }
 }

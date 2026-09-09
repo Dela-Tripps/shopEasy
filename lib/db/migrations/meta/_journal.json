@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1788621371150,
+      "tag": "0000_abnormal_the_captain",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1788743845920,
+      "tag": "0001_clumsy_shinko_yamashiro",
+      "breakpoints": true
+    }
+  ]
+}
