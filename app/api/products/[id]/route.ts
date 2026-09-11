@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getD1Database } from '@/lib/db'
 
 
+
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> } // ✅ Changed to Promise
