@@ -70,4 +70,3 @@ const { handlers } = NextAuth({
 })
 
 export const { GET, POST } = handlers
-export const runtime = 'edge'

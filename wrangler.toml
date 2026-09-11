@@ -1,3 +1,6 @@
+[build]
+command = "npx opennextjs-cloudflare build"
+
 name = "shopeasy"
 main = ".open-next/worker.js"
 compatibility_date = "2024-12-18"
