@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getD1Database } from '@/lib/db'
 
-export const runtime = 'edge'
 
 export async function DELETE(
   request: NextRequest,
