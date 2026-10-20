@@ -41,7 +41,7 @@ export default async function HomePage() {
             <Link href="/shop" className="w-full md:w-auto px-12 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-full font-bold text-lg transition-all duration-300 shadow-[0_0_20px_rgba(79,70,229,0.5)] hover:shadow-[0_0_40px_rgba(79,70,229,0.8)] text-center">
               Shop Now
             </Link>
-            <Link href="/shop" className="w-full md:w-auto px-12 py-4 bg-white/5 border border-white/20 hover:border-cyan-400 rounded-full font-bold text-lg transition-all duration-300 hover:bg-white/10 hover:text-cyan-300 backdrop-blur-md text-center">
+            <Link href="/collections" className="w-full md:w-auto px-12 py-4 bg-white/5 border border-white/20 hover:border-cyan-400 rounded-full font-bold text-lg transition-all duration-300 hover:bg-white/10 hover:text-cyan-300 backdrop-blur-md text-center">
               Explore Collection →
             </Link>
           </div>

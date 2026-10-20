@@ -1,9 +1,5 @@
 import { getCloudflareContext } from '@opennextjs/cloudflare'
 
-/**
- * Get the raw D1 database binding.
- * Works in both local preview and production.
- */
 export function getD1Database(): D1Database | null {
   try {
     const { env } = getCloudflareContext()

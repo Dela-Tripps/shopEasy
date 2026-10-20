@@ -6,13 +6,12 @@ export async function GET() {
   try {
     const db = getD1Database()
 
-    // Fallback to static data if D1 isn't available
     if (!db) {
       console.log('D1 not available – returning static products')
       return NextResponse.json(staticProducts)
     }
 
-    const { results } = await db.prepare('SELECT * FROM products').all()
+    const { results } = await db.prepare('SELECT * FROM products ORDER BY created_at DESC').all()
     return NextResponse.json(results)
   } catch (error: any) {
     console.error('API error:', error)
@@ -43,6 +42,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true, id })
   } catch (error: any) {
+    console.error('D1 insert error:', error)
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 }

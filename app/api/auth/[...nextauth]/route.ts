@@ -44,7 +44,7 @@ const { handlers } = NextAuth({
         httpOnly: true,
         sameSite: 'lax',
         path: '/',
-        secure: false, // ❗ false for localhost (http)
+        secure: true, // required for HTTPS (production)
       },
     },
   },
