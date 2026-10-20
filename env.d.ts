@@ -1,3 +1,7 @@
+interface CloudflareEnv {
+  DB: D1Database
+}
+
 interface D1Database {
   prepare(query: string): D1PreparedStatement
 }

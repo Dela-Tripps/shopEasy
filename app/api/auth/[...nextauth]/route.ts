@@ -2,6 +2,7 @@ import NextAuth from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
 
 const { handlers } = NextAuth({
+  trustHost: true,
   providers: [
     Credentials({
       name: 'Credentials',
@@ -44,7 +45,7 @@ const { handlers } = NextAuth({
         httpOnly: true,
         sameSite: 'lax',
         path: '/',
-        secure: false, // ❗ false for localhost (http)
+        secure: true, // required for HTTPS (production)
       },
     },
   },
@@ -70,4 +71,3 @@ const { handlers } = NextAuth({
 })
 
 export const { GET, POST } = handlers
-export const runtime = 'edge'

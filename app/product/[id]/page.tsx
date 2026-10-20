@@ -1,4 +1,3 @@
-// app/product/[id]/page.tsx
 "use client";
 
 import { useParams } from "next/navigation";
@@ -6,6 +5,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import { products } from "@/data/products";
 import { useCart } from "@/context/CartContext";
+import { toast } from "sonner";
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -22,13 +22,23 @@ export default function ProductDetail() {
     );
   }
 
+  const handleAddToCart = () => {
+    addToCart(product);
+    toast.success(`${product.name} added to cart!`, {
+      description: "View your cart to checkout.",
+      action: {
+        label: "View Cart",
+        onClick: () => (window.location.href = "/cart"),
+      },
+    });
+  };
+
   return (
     <main className="min-h-screen bg-[#050505] text-white overflow-x-hidden">
       <Navbar />
-      
+
       <section className="py-20 px-8">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          
           {/* Left: Image */}
           <div className={`h-[500px] bg-gradient-to-br ${product.bg} rounded-3xl flex items-center justify-center`}>
             <span className="text-[150px] drop-shadow-2xl">{product.icon}</span>
@@ -40,20 +50,20 @@ export default function ProductDetail() {
             <p className="text-gray-400 text-xl mb-8 leading-relaxed">
               {product.desc} Engineered with futuristic materials, designed to push boundaries.
             </p>
-            
+
             <div className="text-4xl font-black text-cyan-400 mb-10">
               {product.price}
             </div>
 
             <div className="flex flex-col md:flex-row gap-4">
-              <button 
-                onClick={() => addToCart(product)}
+              <button
+                onClick={handleAddToCart}
                 className="px-10 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-full font-bold text-lg transition-all duration-300 shadow-[0_0_20px_rgba(79,70,229,0.5)]"
               >
                 Add to Cart
               </button>
-              <Link 
-                href="/cart" 
+              <Link
+                href="/cart"
                 className="px-10 py-4 bg-white/5 border border-white/20 hover:border-cyan-400 rounded-full font-bold text-lg transition-all duration-300 text-center"
               >
                 Go to Cart
@@ -64,7 +74,6 @@ export default function ProductDetail() {
               ← Back to Shop
             </Link>
           </div>
-
         </div>
       </section>
     </main>

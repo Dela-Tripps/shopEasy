@@ -1,33 +1,28 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { auth } from '@/lib/auth'
+import { NextResponse } from 'next/server'
 
-export async function proxy(request: NextRequest) {
-  const path = request.nextUrl.pathname
+export const proxy = auth((req) => {
+  const isLoggedIn = !!req.auth
+  const { nextUrl } = req
+  const path = nextUrl.pathname
 
-  const publicRoutes = ['/', '/products', '/products/:path*', '/login', '/api/webhooks']
-  const adminRoutes = ['/admin', '/admin/:path*']
+  // Protect admin routes
+  if (!isLoggedIn && path.startsWith('/admin')) {
+    return NextResponse.redirect(new URL('/login', nextUrl))
+  }
 
-  const isPublicRoute = publicRoutes.some(route => {
-    if (route.includes(':path*')) {
-      const base = route.replace(':path*', '')
-      return path.startsWith(base)
-    }
-    return path === route
-  })
-
-  const isAdminRoute = adminRoutes.some(route => {
-    if (route.includes(':path*')) {
-      const base = route.replace(':path*', '')
-      return path.startsWith(base)
-    }
-    return path === route
-  })
+  // Redirect logged-in users away from login
+  if (isLoggedIn && path === '/login') {
+    return NextResponse.redirect(new URL('/admin', nextUrl))
+  }
 
   const response = NextResponse.next()
+
+  // Security headers
   response.headers.set('X-Frame-Options', 'DENY')
   response.headers.set('X-Content-Type-Options', 'nosniff')
   response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
-  
-  // ✅ Fix: Allow 'unsafe-eval' in development for React devtools
+
   const isDev = process.env.NODE_ENV === 'development'
   response.headers.set(
     'Content-Security-Policy',
@@ -37,7 +32,7 @@ export async function proxy(request: NextRequest) {
   )
 
   return response
-}
+})
 
 export const config = {
   matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],

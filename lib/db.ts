@@ -1,6 +1,13 @@
-export function getD1Database(): any | null {
-  if (typeof process !== 'undefined' && process.env.DB) {
-    return process.env.DB
+import { getCloudflareContext } from '@opennextjs/cloudflare'
+
+export function getD1Database(): D1Database | null {
+  try {
+    const { env } = getCloudflareContext()
+    if (env?.DB) {
+      return env.DB as D1Database
+    }
+  } catch {
+    // Fallback for local dev / build time
   }
   return null
 }
